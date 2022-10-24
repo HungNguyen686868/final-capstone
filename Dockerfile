@@ -1,35 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: project5-deployment
-  labels:
-    app: project5-service
-spec:
-  replicas: 2
-  selector:
-    matchLabels:
-      app: project5-service
-  template:
-    metadata:
-      labels:
-        app: project5-service
-    spec:
-      containers:
-      - name: web
-        image: 
-        ports:
-          - name: web
-            containerPort: 80
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: service loadbalance
-spec:
-  selector:
-    app: project5-service
-  type: LoadBalancer
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
+FROM python:3.6.8
+
+## Step 1:
+WORKDIR /app
+
+## Step 2:
+# Copy source code to working directory
+COPY . app.py /app/
+## Step 3:
+# Install packages from requirements.txt
+# hadolint ignore=DL3013
+RUN pip install --upgrade pip &&\
+    pip install -r requirements.txt
+
+## Step 4:
+EXPOSE 80
+
+## Step 5:
+# Run app.py at container launch
+CMD ["python" , "app.py"] 
