@@ -59,14 +59,14 @@ jobs:
             aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
             aws configure set aws_session_token $AWS_SESSION_TOKEN
             aws configure set region $AWS_DEFAULT_REGION
-            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 374000545310.dkr.ecr.us-east-1.amazonaws.com
-            docker build -t pythonapp-hello .
-            docker tag pythonapp-hello:latest $AWS_ECR/pythonapp-hello:latest
+            aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/l5p1s7u1
+            docker build -t pythonhello-app .
+            docker tag pythonhello-app:latest public.ecr.aws/l5p1s7u1/pythonhello-app:latest
       - run:
           name: push-docker-image-to-ecr
           command: |
             #push image
-            docker push $AWS_ECR/pythonapp-hello:latest    
+            docker push public.ecr.aws/l5p1s7u1/pythonhello-app:latest   
   
   deploy-infrastructure:
     docker:
