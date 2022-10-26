@@ -83,7 +83,7 @@ jobs:
             curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.18.8/2020-09-18/bin/linux/amd64/kubectl
             chmod +x ./kubectl
             curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
-            sudo mv /tmp/eksctl /usr/local/bin
+            mv /tmp/eksctl /usr/local/bin
             eksctl version
       - run:
           name: deploy cluster
@@ -96,16 +96,7 @@ jobs:
             --ssh-access \
             --ssh-public-key udacity \
             --managed
-
-            eksctl create cluster \
-            --name cluster-demo \
-            --region us-east-1 \
-            --nodegroup-name cluster-demo \
-            --nodes 2 \
-            --ssh-access \ 
-            --ssh-public-key udacity \
-            --managed \
-
+            
   deploy-config: 
     docker:
       - image: 'cimg/base:stable'
