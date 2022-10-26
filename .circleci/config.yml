@@ -88,7 +88,7 @@ jobs:
       - run:
           name: deploy cluster
           command: |
-            eksctl create cluster --name cluster-demo --region us-east-1 --nodegroup-name cluster-demo --nodes 2 --ssh-access --ssh-public-key Webserver1Key --managed            
+            eksctl create cluster --name cluster-demo --region us-east-1 --nodegroup-name cluster-demo --nodes 2 --ssh-access --ssh-public-key udacity --managed            
   deploy-config: 
     docker:
       - image: 'cimg/base:stable'
