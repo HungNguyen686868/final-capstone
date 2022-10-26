@@ -125,10 +125,10 @@ jobs:
             aws configure set region $AWS_DEFAULT_REGION
       - kubernetes/install-kubectl
       - aws-eks/update-kubeconfig-with-authenticator:
-          cluster-name: k8s-demo
+          cluster-name: cluster-demo
           install-kubectl: true
       - kubernetes/create-or-update-resource:
-          resource-file-path: infrastructure/deployment.yaml
+          resource-file-path: deployment.yaml
           show-kubectl-command: true    
 workflows:
   default:
