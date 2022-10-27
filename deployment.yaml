@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: 
+        image: 162501986873.dkr.ecr.us-east-1.amazonaws.com/pythonhello-app
         ports:
           - name: web
             containerPort: 80
