@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: project5-deployment
+  name: final-project
   labels:
-    app: project5-service
+    app: final-capstone
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: project5-service
+      app: final-capstone
   template:
     metadata:
       labels:
-        app: project5-service
+        app: final-capstone
     spec:
       containers:
       - name: web
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: service loadbalance
+  name: service-loadbalance
 spec:
   selector:
-    app: project5-service
+    app: final-capstone
   type: LoadBalancer
   ports:
     - protocol: TCP
